@@ -1,1 +1,0 @@
-{"version":3,"sources":["../src/resolvers.js"],"names":["resolvers","Query","hello"],"mappings":";;;;;;AAAO,MAAMA,SAAS,GAAG;AACrBC,EAAAA,KAAK,EAAE;AACHC,IAAAA,KAAK,EAAE,MAAM;AADV;AADc,CAAlB","sourcesContent":["export const resolvers = {\r\n    Query: {\r\n        hello: () => 'Hello world with GraphQL'\r\n     }\r\n } "],"file":"resolvers.js"}
