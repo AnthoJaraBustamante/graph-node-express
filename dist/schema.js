@@ -1,30 +1,34 @@
 "use strict";
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-const graphqlTools = __importStar(require("graphql-tools"));
-const resolvers = __importStar(require("./resolvers"));
+const tslib_1 = require("tslib");
+const graphqlTools = (0, tslib_1.__importStar)(require("graphql-tools"));
+const resolvers = (0, tslib_1.__importStar)(require("./resolvers"));
 const typeDefs = `
     type Query {
         hello: String
+        age(name:String): Int
+        date: String
+        tasks:[Task]
     }
+
+    type Task {
+        _id: ID
+        title: String!
+        description: String!
+        number: Int
+    } 
+
+    type Mutation{
+        createTask(input: TaskInput): [Task]
+    }
+
+    input TaskInput
+    {
+        title: String
+        description: String
+        number: Int
+    }
+
 `;
 exports.default = graphqlTools.makeExecutableSchema({
     typeDefs: typeDefs,
